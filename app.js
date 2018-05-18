@@ -3,6 +3,8 @@ let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 
+
+app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
 Genre = require('./models/genre');
