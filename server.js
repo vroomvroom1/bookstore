@@ -93,7 +93,7 @@ app.get('/api/books/:_id', function(req, res){
     });
 });
 
-app.post('/api/books:_id', function(req, res){
+app.post('/api/books', function(req, res){
     let book = req.body;
     Book.addBook(book, function(err, book){
       if(err){
@@ -129,8 +129,7 @@ app.delete('/api/books/:_id', function(req, res){
 db = client.db();
   console.log("Database connection ready");
 
-  var server = app.listen(process.env.PORT || 8080, function () {
+  var server = app.listen(process.env.PORT || 3000, function () {
   var port = server.address().port;
   console.log("App now running on port", port);
-});
 });
