@@ -92,7 +92,7 @@ app.get('/api/books/:_id', function(req, res){
     });
 });
 
-app.post('/api/books', function(req, res){
+app.post('/api/books/:_id', function(req, res){
     let book = req.body;
     Book.addBook(book, function(err, book){
       if(err){
