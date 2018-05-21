@@ -17,11 +17,11 @@ myApp.controller('BooksController', ['$scope', '$http', '$location', '$routePara
   }
 
   $scope.addBook = function(){
-
-  		$http.post('/api/books/', $scope.book).then(function(response){
+    let id = $routeParams.id;
+      console.log($scope.book);
+  		$http.post('/api/books/'+id).then(function(response){
   			window.location.href='#!/books';
   		});
-      	console.log($scope.book);
   	}
 
   $scope.updateBook = function(){
