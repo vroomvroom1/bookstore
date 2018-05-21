@@ -1,24 +1,19 @@
+'use strict';
+
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let port = process.env.PORT || 8080; 
+let http = require('http');
 
-
-app.use(express.static(__dirname+'/client'));
-app.use(bodyParser.json());
 
 Genre = require('./models/genre');
 Book = require('./models/book');
 
 //Connect to mongoose
-mongoose.connect('mongodb://root:matthew1@ds231070.mlab.com:31070/vroom1', function(err) {
-    if (err) {
-        console.log('Not connected to the database: ' + err); // Log to console if unable to connect to database
-    } else {
-        console.log('Successfully connected to MongoDB'); // Log to console if able to connect to database
-    }
-});
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
+app.use(express.static(__dirname+'/client'));
+app.use(bodyParser.json());
 
 app.get('/', function(req, res){
   res.send('Please use /api/books or /api/genres');
@@ -119,6 +114,9 @@ app.delete('/api/books/:_id', function(req, res){
 
 //Testing Purposes
 
+let server = http.createServer(app);
+
+let port = process.env.PORT || 3000;
 app.listen(port, function() {
-    console.log('Running the server on port ' + port); // Listen on configured port
+console.log("Listening on " + port);
 });
