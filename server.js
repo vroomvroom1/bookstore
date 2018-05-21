@@ -2,34 +2,22 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let http = require('http');
-const config = require('./config/database');
-const path = require('path');
 
 
+app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
 Genre = require('./models/genre');
 Book = require('./models/book');
 
-// Connect To Database (OLD CODE)
-mongoose.connect(config.database, { useMongoClient: true});
-// On Connection
-mongoose.connection.on('connected', () => {
-  console.log('Connected to Database '+config.database);
-});
-// On Error
-mongoose.connection.on('error', (err) => {
-  console.log('Database error '+err);
-});
-
 //Connect to mongoose
-//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
-// mongoose.connect('mongodb://localhost/bookstore');
-app.use(express.static(__dirname+'/client'));
-// let db = mongoose.connection;
-
-
+mongoose.connect('mongodb://root:matthew1@ds231070.mlab.com:31070/vroom1', function(err) {
+    if (err) {
+        console.log('Not connected to the database: ' + err); // Log to console if unable to connect to database
+    } else {
+        console.log('Successfully connected to MongoDB'); // Log to console if able to connect to database
+    }
+});
 
 app.get('/', function(req, res){
   res.send('Please use /api/books or /api/genres');
@@ -129,10 +117,7 @@ app.delete('/api/books/:_id', function(req, res){
 });
 
 //Testing Purposes
-//let server = http.createServer(app);
-
-const port = process.env.PORT || 8080;
 
 app.listen(port, function() {
-console.log("Listening on " + port);
+    console.log('Running the server on port ' + port); // Listen on configured port
 });
