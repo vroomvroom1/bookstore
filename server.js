@@ -23,9 +23,9 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
   }
 
 
-app.config(function ($qProvider) {
-      $qProvider.errorOnUnhandledRejections(false);
-  });
+// app.config(function ($qProvider) {
+//       $qProvider.errorOnUnhandledRejections(false);
+//   });
 
 app.get('/', function(req, res){
   res.send('Please use /api/books or /api/genres');
