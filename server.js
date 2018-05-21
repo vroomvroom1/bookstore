@@ -2,6 +2,7 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
+let port = process.env.PORT || 8080; 
 
 
 app.use(express.static(__dirname+'/client'));
