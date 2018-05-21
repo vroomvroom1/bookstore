@@ -22,14 +22,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
     process.exit(1);
   }
 
-  db = client.db();
-    console.log("Database connection ready");
 
-    var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
-});
 
 app.get('/', function(req, res){
   res.send('Please use /api/books or /api/genres');
@@ -130,5 +123,11 @@ app.delete('/api/books/:_id', function(req, res){
 
 //Testing Purposes
 
-app.listen(3000);
-console.log('Running on port 3000');
+db = client.db();
+  console.log("Database connection ready");
+
+  var server = app.listen(process.env.PORT || 8080, function () {
+  var port = server.address().port;
+  console.log("App now running on port", port);
+});
+});
