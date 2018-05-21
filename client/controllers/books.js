@@ -19,20 +19,20 @@ myApp.controller('BooksController', ['$scope', '$http', '$location', '$routePara
   $scope.addBook = function(){
   		console.log($scope.book);
   		$http.post('/api/books/', $scope.book).then(function(response){
-  			window.location.href='#/books';
+  			window.location.href='#!/books';
   		});
   	}
 
   $scope.updateBook = function(){
     let id = $routeParams.id;
     $http.put('/api/books/'+id, $scope.book).then(function(response){
-      window.location.href='#/books';
+      window.location.href='#!/books';
     });
   }
 
   $scope.removeBook = function(id){
     $http.delete('/api/books/'+id).then(function(response){
-      window.location.href='#/books';
+      window.location.href='#!/books';
     });
   }
 }]);

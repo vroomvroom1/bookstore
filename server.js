@@ -3,8 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let mongodb = require("mongodb");
-var ObjectID = mongodb.ObjectID;
-var CONTACTS_COLLECTION = "contacts";
+let ObjectID = mongodb.ObjectID;
 
 
 app.use(express.static(__dirname+'/client'));
