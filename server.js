@@ -2,6 +2,7 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
+let http = require('http');
 
 
 app.use(express.static(__dirname+'/client'));
@@ -12,8 +13,9 @@ Book = require('./models/book');
 
 //Connect to mongoose
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
-mongoose.connect('mongodb://localhost/bookstore');
+//mongoose.connect('mongodb://localhost/bookstore');
 let db = mongoose.connection;
+let server = http.createServer(app);
 
 
 
