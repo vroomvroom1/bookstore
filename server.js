@@ -3,7 +3,8 @@ let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let http = require('http');
-
+const config = require('./config/database');
+const path = require('path');
 
 
 app.use(bodyParser.json());
@@ -11,8 +12,19 @@ app.use(bodyParser.json());
 Genre = require('./models/genre');
 Book = require('./models/book');
 
+// Connect To Database (OLD CODE)
+mongoose.connect(config.database, { useMongoClient: true});
+// On Connection
+mongoose.connection.on('connected', () => {
+  console.log('Connected to Database '+config.database);
+});
+// On Error
+mongoose.connection.on('error', (err) => {
+  console.log('Database error '+err);
+});
+
 //Connect to mongoose
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
+//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
 // mongoose.connect('mongodb://localhost/bookstore');
 app.use(express.static(__dirname+'/client'));
 // let db = mongoose.connection;
@@ -117,9 +129,9 @@ app.delete('/api/books/:_id', function(req, res){
 });
 
 //Testing Purposes
-let server = http.createServer(app);
+//let server = http.createServer(app);
 
-let port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 app.listen(port, function() {
 console.log("Listening on " + port);
