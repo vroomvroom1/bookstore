@@ -5,7 +5,7 @@ let mongoose = require('mongoose');
 let http = require('http');
 
 
-app.use(express.static(__dirname+'/client'));
+
 app.use(bodyParser.json());
 
 Genre = require('./models/genre');
@@ -13,9 +13,9 @@ Book = require('./models/book');
 
 //Connect to mongoose
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
-//mongoose.connect('mongodb://localhost/bookstore');
-let db = mongoose.connection;
-let server = http.createServer(app);
+// mongoose.connect('mongodb://localhost/bookstore');
+app.use(express.static(__dirname+'/client'));
+// let db = mongoose.connection;
 
 
 
@@ -117,6 +117,10 @@ app.delete('/api/books/:_id', function(req, res){
 });
 
 //Testing Purposes
+let server = http.createServer(app);
 
-app.listen(3000);
-console.log('Running on port 3000');
+let port = process.env.PORT || 3000;
+
+app.listen(port, function() {
+console.log("Listening on " + port);
+});
