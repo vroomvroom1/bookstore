@@ -11,8 +11,11 @@ Genre = require('./models/genre');
 Book = require('./models/book');
 
 //Connect to mongoose
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
 mongoose.connect('mongodb://localhost/bookstore');
 let db = mongoose.connection;
+
+
 
 app.get('/', function(req, res){
   res.send('Please use /api/books or /api/genres');
