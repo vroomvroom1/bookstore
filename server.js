@@ -23,9 +23,9 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
   }
 
 
-// app.config(function ($qProvider) {
-//       $qProvider.errorOnUnhandledRejections(false);
-//   });
+app.config(function ($qProvider) {
+      $qProvider.errorOnUnhandledRejections(false);
+  });
 
 app.get('/', function(req, res){
   res.send('Please use /api/books or /api/genres');
@@ -93,7 +93,7 @@ app.get('/api/books/:_id', function(req, res){
     });
 });
 
-app.post('/api/books', function(req, res){
+app.post('/api/book', function(req, res){
     let book = req.body;
     Book.addBook(book, function(err, book){
       if(err){
@@ -132,4 +132,5 @@ db = client.db();
   var server = app.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;
   console.log("App now running on port", port);
+});
 });
