@@ -1,19 +1,35 @@
-'use strict';
-
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let http = require('http');
+let mongodb = require("mongodb");
+var ObjectID = mongodb.ObjectID;
+var CONTACTS_COLLECTION = "contacts";
 
+
+app.use(express.static(__dirname+'/client'));
+app.use(bodyParser.json());
 
 Genre = require('./models/genre');
 Book = require('./models/book');
 
 //Connect to mongoose
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bookstore');
-app.use(express.static(__dirname+'/client'));
-app.use(bodyParser.json());
+var db;
+
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+
+  db = client.db();
+    console.log("Database connection ready");
+
+    var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });
+});
 
 app.get('/', function(req, res){
   res.send('Please use /api/books or /api/genres');
@@ -114,9 +130,5 @@ app.delete('/api/books/:_id', function(req, res){
 
 //Testing Purposes
 
-let server = http.createServer(app);
-
-let port = process.env.PORT || 3000;
-app.listen(port, function() {
-console.log("Listening on " + port);
-});
+app.listen(3000);
+console.log('Running on port 3000');
