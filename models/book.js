@@ -46,11 +46,11 @@ module.exports.getBooks = (callback, limit) => {
 module.exports.getBookById = (id, callback) => {
 	Book.findById(id, callback);
 }
-
-// Add Book
-// module.exports.addBook = (book, callback) => {
-// 	Book.create(book, callback);
-// }
+//here
+//Add Book
+module.exports.addBook = (book, callback) => {
+	Book.create(book, callback);
+}
 
 // Update Book
 module.exports.updateBook = (id, book, options, callback) => {

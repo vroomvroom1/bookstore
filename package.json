@@ -11,6 +11,10 @@
     "body-parser":"*",
     "mongoose":"*"
   },
+  "scripts": {
+ "start": "node server.js",
+ "postinstall":"bower install"
+},
   "author": "Matt Vroom",
   "license": "ISC"
 }
