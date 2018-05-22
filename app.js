@@ -70,7 +70,7 @@ app.delete('/api/genres/:_id', (req, res) => {
 	});
 });
 
-app.get('/api/books', (req, res) => {
+app.get('/books', (req, res) => {
 	Book.getBooks((err, books) => {
 		if(err){
 			throw err;
@@ -79,7 +79,7 @@ app.get('/api/books', (req, res) => {
 	});
 });
 
-app.get('/api/books/:_id', (req, res) => {
+app.get('/books/:_id', (req, res) => {
 	Book.getBookById(req.params._id, (err, book) => {
 		if(err){
 			throw err;
@@ -88,7 +88,7 @@ app.get('/api/books/:_id', (req, res) => {
 	});
 });
 
-app.post('/api/books', (req, res) => {
+app.post('/books', (req, res) => {
 	var book = req.body;
 	Book.addBook(book, (err, book) => {
 		if(err){
