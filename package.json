@@ -9,7 +9,8 @@
   "dependencies": {
     "express":"*",
     "body-parser":"*",
-    "mongoose":"*"
+    "mongoose":"*",
+    "bower":"*"
   },
   "scripts": {
  "start": "node server.js",
