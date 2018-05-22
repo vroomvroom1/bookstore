@@ -48,9 +48,9 @@ module.exports.getBookById = (id, callback) => {
 }
 
 // Add Book
-module.exports.addBook = (book, callback) => {
-	Book.create(book, callback);
-}
+// module.exports.addBook = (book, callback) => {
+// 	Book.create(book, callback);
+// }
 
 // Update Book
 module.exports.updateBook = (id, book, options, callback) => {
