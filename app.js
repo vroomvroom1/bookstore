@@ -9,8 +9,8 @@ let ObjectID = mongodb.ObjectID;
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
-// Genre = require('./models/genre');
-Book = require('./models/book.js');
+Genre = require('./models/genre');
+Book = require('./models/book');
 
 //Connect to mongoose
 var db;
@@ -70,8 +70,7 @@ app.delete('/api/genres/:_id', (req, res) => {
 	});
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/books.js'));
+app.get('/api/books', (req, res) => {
 	Book.getBooks((err, books) => {
 		if(err){
 			throw err;
@@ -80,8 +79,7 @@ app.get('*', (req, res) => {
 	});
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/books.js'));
+app.get('/api/books/:_id', (req, res) => {
 	Book.getBookById(req.params._id, (err, book) => {
 		if(err){
 			throw err;

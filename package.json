@@ -8,7 +8,7 @@
   "description": "bookstore app",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "*",
