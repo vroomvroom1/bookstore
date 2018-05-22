@@ -70,7 +70,8 @@ app.delete('/api/genres/:_id', (req, res) => {
 	});
 });
 
-app.get('/api/books', (req, res) => {
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/books.js'));
 	Book.getBooks((err, books) => {
 		if(err){
 			throw err;
@@ -79,7 +80,8 @@ app.get('/api/books', (req, res) => {
 	});
 });
 
-app.get('/api/books/:_id', (req, res) => {
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/books.js'));
 	Book.getBookById(req.params._id, (err, book) => {
 		if(err){
 			throw err;
