@@ -4,17 +4,13 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let mongodb = require("mongodb");
 let ObjectID = mongodb.ObjectID;
-let router = express.Router(); // Invoke the Express Router
-let appRoutes = require('./app/routes/api')(router); // Import the application end points/API
 
 
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
-app.use('/api', appRoutes); // Assign name to end points (e.g., '/api/management/', '/api/users' ,etc. )
-
 
 Genre = require('./models/genre');
-Book = require('./models/book');
+Book = require('./models/books');
 
 //Connect to mongoose
 var db;
@@ -34,7 +30,7 @@ app.get('/', (req, res) => {
 	res.send('Please use /api/books or /api/genres');
 });
 
-app.get('/genres', (req, res) => {
+app.get('/api/genres', (req, res) => {
 	Genre.getGenres((err, genres) => {
 		if(err){
 			throw err;
@@ -43,7 +39,7 @@ app.get('/genres', (req, res) => {
 	});
 });
 
-app.post('/genres', (req, res) => {
+app.post('/api/genres', (req, res) => {
 	var genre = req.body;
 	Genre.addGenre(genre, (err, genre) => {
 		if(err){
@@ -53,7 +49,7 @@ app.post('/genres', (req, res) => {
 	});
 });
 
-app.put('/genres/:_id', (req, res) => {
+app.put('/api/genres/:_id', (req, res) => {
 	var id = req.params._id;
 	var genre = req.body;
 	Genre.updateGenre(id, genre, {}, (err, genre) => {
@@ -64,7 +60,7 @@ app.put('/genres/:_id', (req, res) => {
 	});
 });
 
-app.delete('/genres/:_id', (req, res) => {
+app.delete('/api/genres/:_id', (req, res) => {
 	var id = req.params._id;
 	Genre.removeGenre(id, (err, genre) => {
 		if(err){
@@ -74,7 +70,7 @@ app.delete('/genres/:_id', (req, res) => {
 	});
 });
 
-app.get('/books', (req, res) => {
+app.get('/api/books', (req, res) => {
 	Book.getBooks((err, books) => {
 		if(err){
 			throw err;
@@ -83,7 +79,7 @@ app.get('/books', (req, res) => {
 	});
 });
 
-app.get('/books/:_id', (req, res) => {
+app.get('/api/books/:_id', (req, res) => {
 	Book.getBookById(req.params._id, (err, book) => {
 		if(err){
 			throw err;
@@ -92,7 +88,7 @@ app.get('/books/:_id', (req, res) => {
 	});
 });
 
-app.post('/books', (req, res) => {
+app.post('/api/books', (req, res) => {
 	var book = req.body;
 	Book.addBook(book, (err, book) => {
 		if(err){
@@ -102,7 +98,7 @@ app.post('/books', (req, res) => {
 	});
 });
 
-app.put('/books/:_id', (req, res) => {
+app.put('/api/books/:_id', (req, res) => {
 	var id = req.params._id;
 	var book = req.body;
 	Book.updateBook(id, book, {}, (err, book) => {
@@ -113,7 +109,7 @@ app.put('/books/:_id', (req, res) => {
 	});
 });
 
-app.delete('/books/:_id', (req, res) => {
+app.delete('/api/books/:_id', (req, res) => {
 	var id = req.params._id;
 	Book.removeBook(id, (err, book) => {
 		if(err){

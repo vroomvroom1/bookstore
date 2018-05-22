@@ -4,34 +4,34 @@ myApp.controller('BooksController', ['$scope', '$http', '$location', '$routePara
   console.log('BooksController loaded');
 //here
   $scope.getBooks = function(){
-    $http.get('/books').then(function(response){
+    $http.get('/api/books').then(function(response){
       $scope.books = response.data;
     });
   }
 
   $scope.getBook = function(){
     let id = $routeParams.id;
-    $http.get('/books/'+id).then(function(response){
+    $http.get('/api/books/'+id).then(function(response){
       $scope.book = response.data;
     });
   }
 
   $scope.addBook = function(){
       console.log($scope.book);
-  		$http.post('/books/', $scope.book).then(function(response){
+  		$http.post('/api/books/', $scope.book).then(function(response){
   			window.location.href='#!/books';
   		});
   	}
 
   $scope.updateBook = function(){
     let id = $routeParams.id;
-    $http.put('/books/'+id, $scope.book).then(function(response){
+    $http.put('/api/books/'+id, $scope.book).then(function(response){
       window.location.href='#!/books';
     });
   }
 
   $scope.removeBook = function(id){
-    $http.delete('/books/'+id).then(function(response){
+    $http.delete('/api/books/'+id).then(function(response){
       window.location.href='#!/books';
     });
   }
