@@ -1,6 +1,6 @@
 
 //Organizing routes
-myApp.controller('books', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
+myApp.controller('BooksController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
   console.log('BooksController loaded');
 //here
   $scope.getBooks = function(){
