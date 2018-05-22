@@ -10,7 +10,7 @@ app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
 Genre = require('./models/genre');
-Book = require('./models/books');
+Book = require('./models/book');
 
 //Connect to mongoose
 var db;
