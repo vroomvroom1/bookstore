@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 	res.send('Please use /api/books or /api/genres');
 });
 
-app.get('/api/genres', (req, res) => {
+app.get('/genres', (req, res) => {
 	Genre.getGenres((err, genres) => {
 		if(err){
 			throw err;
@@ -39,7 +39,7 @@ app.get('/api/genres', (req, res) => {
 	});
 });
 
-app.post('/api/genres', (req, res) => {
+app.post('/genres', (req, res) => {
 	var genre = req.body;
 	Genre.addGenre(genre, (err, genre) => {
 		if(err){
@@ -49,7 +49,7 @@ app.post('/api/genres', (req, res) => {
 	});
 });
 
-app.put('/api/genres/:_id', (req, res) => {
+app.put('/genres/:_id', (req, res) => {
 	var id = req.params._id;
 	var genre = req.body;
 	Genre.updateGenre(id, genre, {}, (err, genre) => {
@@ -60,7 +60,7 @@ app.put('/api/genres/:_id', (req, res) => {
 	});
 });
 
-app.delete('/api/genres/:_id', (req, res) => {
+app.delete('/genres/:_id', (req, res) => {
 	var id = req.params._id;
 	Genre.removeGenre(id, (err, genre) => {
 		if(err){
@@ -70,7 +70,7 @@ app.delete('/api/genres/:_id', (req, res) => {
 	});
 });
 
-app.get('/api/books', (req, res) => {
+app.get('/books', (req, res) => {
 	Book.getBooks((err, books) => {
 		if(err){
 			throw err;
@@ -79,7 +79,7 @@ app.get('/api/books', (req, res) => {
 	});
 });
 
-app.get('/api/books/:_id', (req, res) => {
+app.get('/books/:_id', (req, res) => {
 	Book.getBookById(req.params._id, (err, book) => {
 		if(err){
 			throw err;
@@ -88,7 +88,7 @@ app.get('/api/books/:_id', (req, res) => {
 	});
 });
 
-app.post('/api/books', (req, res) => {
+app.post('/books', (req, res) => {
 	var book = req.body;
 	Book.addBook(book, (err, book) => {
 		if(err){
@@ -98,7 +98,7 @@ app.post('/api/books', (req, res) => {
 	});
 });
 
-app.put('/api/books/:_id', (req, res) => {
+app.put('/books/:_id', (req, res) => {
 	var id = req.params._id;
 	var book = req.body;
 	Book.updateBook(id, book, {}, (err, book) => {
@@ -109,7 +109,7 @@ app.put('/api/books/:_id', (req, res) => {
 	});
 });
 
-app.delete('/api/books/:_id', (req, res) => {
+app.delete('/books/:_id', (req, res) => {
 	var id = req.params._id;
 	Book.removeBook(id, (err, book) => {
 		if(err){
