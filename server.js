@@ -9,8 +9,8 @@ let ObjectID = mongodb.ObjectID;
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
-Genre = require('./models/genre');
-Book = require('./models/book');
+// Genre = require('./models/genre');
+Book = require('./models/book.js');
 
 //Connect to mongoose
 var db;
